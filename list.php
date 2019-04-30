@@ -3,9 +3,7 @@ session_start();
 
 //Если сессия и куки пустые, тогда делаем переадрессацию на авторизацию
 if (empty($_SESSION['auth']) and empty($_COOKIE['key']) )
-{
-    header('Location: login-form.php');exit;
-}
+{ header('Location: login-form.php');exit; }
 
 require_once "functions.php";
 
