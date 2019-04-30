@@ -8,35 +8,38 @@ if (empty($_SESSION['auth']) and empty($_COOKIE['key']) )
 }
 
 require_once "functions.php";
-
-//подготовка и выполнение запроса к БД
 $pdo = config();
-$stmt = $pdo->prepare('SELECT * FROM article WHERE id_user = ?');
-$stmt->execute([$_SESSION['id']]);
 
 //Если пустая переменная auth из сессии ИЛИ она равна false (для авторизованного она true).
-	if (empty($_SESSION['auth']) or $_SESSION['auth'] == false) {
-		//Проверяем, не пустые ли нужные нам куки
-		if ( !empty($_COOKIE['email']) and !empty($_COOKIE['key']) ) {
-			//Пишем email и ключ из КУК в переменные (для удобства работы):
-			$email = $_COOKIE['email'];
-			$key = $_COOKIE['key']; //ключ из кук (аналог пароля, в базе поле cookie)
+if (empty($_SESSION['auth']) or $_SESSION['auth'] == false) {
+    //Проверяем, не пустые ли нужные нам куки
+    if ( !empty($_COOKIE['email']) and !empty($_COOKIE['key']) ) {
+        //Пишем email и ключ из КУК в переменные (для удобства работы):
 
-			//Формируем и отсылаем SQL запрос:
-            $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ? AND cookie = ?');
-            $stmt->execute([$email, $key]);
-            $result = $stmt->fetch();
 
-			//Если база данных вернула не пустой ответ - значит пара email-ключ_к_кукам подошла.
-			if (!empty($result)) {
-				//Пишем в сессию информацию о том, что мы авторизовались:
-				$_SESSION['auth'] = true;
-				//Пишем в сессию email и id пользователя
-				$_SESSION['id'] = $result['id'];
-				$_SESSION['email'] = $result['email'];
-			}
-		}
-	}
+        $email = $_COOKIE['email'];
+        $key = $_COOKIE['key']; //ключ из кук (аналог пароля, в базе поле cookie)
+
+        //Формируем и отсылаем SQL запрос:
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ? AND cookie = ?');
+        $stmt->execute([$email, $key]);
+        $result = $stmt->fetch();
+
+        //Если база данных вернула не пустой ответ - значит пара email-ключ_к_кукам подошла.
+        if (!empty($result)) {
+
+            //Пишем в сессию информацию о том, что мы авторизовались:
+            $_SESSION['auth'] = true;
+            //Пишем в сессию email и id пользователя
+            $_SESSION['id'] = $result['id'];
+            $_SESSION['email'] = $result['email'];
+        }
+    }
+}
+
+//подготовка и выполнение запроса к БД
+$stmt = $pdo->prepare('SELECT * FROM article WHERE id_user = ?');
+$stmt->execute([$_SESSION['id']]);
 ?>
 
 <!doctype html>

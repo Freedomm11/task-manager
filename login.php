@@ -27,8 +27,8 @@ foreach ($stmt as $row) {
             $key = generateSalt(); //назовем ее $key
 
             //Пишем куки (имя куки, значение, время жизни - сейчас+месяц)
-            setcookie('email', $row['email'], time() + 60 * 60 * 24 * 30); //email
-            setcookie('key', $key, time() + 60 * 60 * 24 * 30); //случайная строка
+            setcookie('email', $row['email'], time()+360000); //email
+            setcookie('key', $key, time()+360000); //случайная строка
             /*
 				Пишем эту же куку в базу данных для данного юзера.
 				Формируем и отсылаем SQL запрос:
