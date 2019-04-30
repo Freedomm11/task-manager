@@ -53,7 +53,6 @@ errors($result);
 //перемещение файла в дерикторию с картинками
 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
 }
-
 //переадресация на главную
 header('Location: /list.php'); exit;
 

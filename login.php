@@ -39,7 +39,6 @@ foreach ($stmt as $row) {
         header('Location: list.php');exit;
     }
 };
-
 $errorMessage = 'Пожалуйста, заполните все поля!';
 include 'errors.php';
 exit;

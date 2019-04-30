@@ -21,7 +21,6 @@ $result = $stmt->fetch();
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
     <title>Show</title>
 
     <!-- Bootstrap core CSS -->
