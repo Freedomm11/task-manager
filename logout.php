@@ -1,11 +1,16 @@
 <?php
-//Если переменная auth из сессии не пуста и равна true, то...
+require_once 'functions.php';
+//Очищаем сессию
     session_start();
-    session_destroy(); //разрушаем сессию для пользователя
+    unset($_SESSION['auth']);
+    unset($_SESSION['id']);
+    unset($_SESSION['email']);
+    session_destroy();
 
-    //Удаляем куки авторизации путем установления времени их жизни на текущий момент:
-    setcookie('email', '', time()); //удаляем логин
+//Удаляем куки:
+    setcookie('email', '', time()); //удаляем email
     setcookie('key', '', time()); //удаляем ключ
 
+//Переадрессация на авторизацию
 header('Location: /login-form.php'); exit;
 ?>

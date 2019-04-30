@@ -1,8 +1,13 @@
 <?php
+session_start();
+
+//Если сессия и куки пустые, тогда делаем переадрессацию на авторизацию
+if (empty($_SESSION['auth']) and empty($_COOKIE['key']) )
+{
+    header('Location: login-form.php');exit;
+}
 
 require_once "functions.php";
-
-session_start();
 
 //подготовка и выполнение запроса к БД
 $pdo = config();
@@ -25,7 +30,7 @@ $stmt->execute([$_SESSION['id']]);
 			//Если база данных вернула не пустой ответ - значит пара email-ключ_к_кукам подошла.
 			if (!empty($result)) {
 				//Стартуем сессию:
-				session_start();
+				//session_start();
 				//Пишем в сессию информацию о том, что мы авторизовались:
 				$_SESSION['auth'] = true;
 				//Пишем в сессию email и id пользователя
