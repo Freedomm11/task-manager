@@ -30,6 +30,7 @@ if (empty($_SESSION['auth']) or $_SESSION['auth'] == false) {
         header('Location: login-form.php');exit;
     }
 }
+
 ?>
 
 <!doctype html>

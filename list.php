@@ -35,6 +35,7 @@ if (empty($_SESSION['auth']) or $_SESSION['auth'] == false) {
 //подготовка и выполнение запроса к БД
 $stmt = $pdo->prepare('SELECT * FROM article WHERE id_user = ?');
 $stmt->execute([$_SESSION['id']]);
+
 ?>
 
 <!doctype html>

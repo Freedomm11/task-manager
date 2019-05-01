@@ -30,6 +30,7 @@ if (empty($_SESSION['auth']) or $_SESSION['auth'] == false) {
     }
 }
 
+
 require_once "functions.php";
 
 $id = $_GET['id'];
