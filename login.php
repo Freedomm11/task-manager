@@ -39,7 +39,7 @@ foreach ($stmt as $row) {
         header('Location: list.php');exit;
     }
 };
-$errorMessage = 'Пожалуйста, заполните все поля!';
+$errorMessage = 'Неверный email или пароль!';
 include 'errors.php';
 exit;
 
