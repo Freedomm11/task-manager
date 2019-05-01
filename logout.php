@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once 'functions.php';
+
 //Очищаем сессию
-    session_start();
     unset($_SESSION['auth']);
     unset($_SESSION['id']);
     unset($_SESSION['email']);
@@ -13,4 +14,3 @@ require_once 'functions.php';
 
 //Переадрессация на авторизацию
 header('Location: /login-form.php'); exit;
-?>

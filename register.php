@@ -1,5 +1,4 @@
 <?php
-
 require_once "functions.php";
 
 //получение данных из $_POST
@@ -30,15 +29,3 @@ errors($result);
 
 //переадресация на авторизацию
 header('Location: /login-form.php'); exit;
-
-
-
-
-
-
-
-
-
-
-
-?>

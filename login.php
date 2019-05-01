@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "functions.php";
 
 //получение данных из $_POST
@@ -16,7 +16,6 @@ $stmt = $pdo->query('SELECT * FROM users ');
 foreach ($stmt as $row) {
     if ($email == $row['email'] and  password_verify($password, $row['password']) == $row['password']  )
     {
-        session_start();
         $_SESSION['auth'] = true;
         $_SESSION['id'] = $row['id'];
         $_SESSION['email'] = $row['email'];

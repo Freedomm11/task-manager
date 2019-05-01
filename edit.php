@@ -1,5 +1,4 @@
 <?php
-
 require_once "functions.php";
 
 //получение данных из $_POST и $_GET
